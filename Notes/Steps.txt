@@ -1,0 +1,178 @@
+1. Perform basic reset using universal selector (*).
+
+2. Set the font-property in body {} because all values of font can be inherited to child elements.
+   all common rules should be put into the body element selector. so thei children elements can use those properties.
+
+3.  box-sizing properties:
+
+    box-sizing: border-box; // MUST BE USED.
+     Total width: 160px
+     Total height: 80px
+     Content box width: 160px - (2 * 20px) - (2 * 8px) = 104px
+     Content box height: 80px - (2 * 20px) - (2 * 8px) = 24px
+
+    box-sizing: content-box; // CSS DEFAULT BEHAVIOR.
+     Total width: 160px + (2 * 20px) + (2 * 8px) = 216px
+     Total height: 80px + (2 * 20px) + (2 * 8px) = 136px
+     Content box width: 160px
+     Content box height: 80px
+
+4.  *Viewport = the browser window size. If the viewport is 50cm wide, 1vw = 0.5cm
+    *ALL IMAGES WIDTH UNIT SHOULD BE IN PERCENTAGE (%).
+
+5.  backgound-position:
+     top: image top side will not be croped when viewport size changes.
+     bottom: image bottom side will not be croped when viewport size changes.
+     center: image center side will not be croped when viewport size changes.
+     left: image left side will not be croped when viewport size changes.
+     right: image right side will not be croped when viewport size changes.
+
+6.  To Clip Images for different shapes use css clip maker  : https://bennettfeely.com/clippy/
+    clip-path: polygon(
+        top-left[x y], 
+        top-right[x y], 
+        bottom-right[x y], 
+        bottom-left[x y]
+        ) i.e. polygon(x y, x y, x y, x y)   
+
+7.  left -> Top -> Right -> Bottom [direction of the screen].
+
+8. To use absolute we must have the refrence from parent element that must use relative rules.
+
+9. transform: translate(-50%, -50%) to put container at the center, it does not take the parent refrence it translate 
+   for own element.
+   whenever we use transform property we must use transition property in its initial State i.e.
+   [transition: all _TIME_s] it makes transformation smooth.
+
+10. for animation we use @keyframes and the animation property.
+
+11. psuedo-classes (:) -> :link, :visited, :hover, :active (order must be followed)
+    psuedo-elements (::) -> ::after, ::before -> content:"" must be present in this rules.
+    psuedo-elements act as child element.
+
+12.   X->
+     Y  directions of axis
+     |
+     V
+
+13. 3 important pillars of css:
+    a. Responsive Web Design. 
+        [fluid layout, media queries, Responsive Images, Correct Units, Desk-first vs Mob-first starategy]
+    b. Maintainable and scalable Code.
+        [Clean, Easy-to-understand, Growth, Reusable, How to: Organise files, to name classes, to structure HTML]
+    c. Web Performance.
+        [Less HTTP request, Less Code, Compress Code, Less Images, Compress Images]
+
+14. Cascade: Process of combining different stylesheet and resolving conflicts between diffrent CSS rules and 
+    declarations, when more than one rules apply to certain element.
+
+    There are 3 types of CSS DECLARATIONS:
+    a. Author declarations -> Developers that write and use in html.
+    b. User declarations -> When User changes CSS rules in browser.
+    c. Browser (user agent) -> such as anchor tag has its own rule i.e blue color and underline.
+
+15. HOW CSS RESOLVE CONFLICTS : IMPORTANCE -> SPECIFICITY -> SOURCE ORDER
+
+    IMPORTANCE (use of !important keyword) It follow Orders:
+    1. User !important declarations (highest PRIORITY)
+    2. Author !important declarations
+    3. Author declarations
+    4. User declarations
+    5. DEFAULT Browser declarations (lowest PRIORITY)
+
+    Eg. 
+    div .btn {
+        backgound-color: blue !important; (highest PRIORITY -> Author !important declarations) 
+    }
+
+    .btn {
+        backgound-color: green;
+    }
+
+    If we do not have the !important keyword declarations than each declarations have same IMPORTANCE
+    SPECIFICITY resolve the issue.
+
+    SPECIFICITY follow Orders:
+    1. Inline Styles. (highest PRIORITY)
+    2. IDs.
+    3. Classes, psuedo-classes, attribute.
+    4. Elements, psuedo-elements. (lowest PRIORITY)
+
+    Eg.                                             (Inline, IDs, Classes, Elements)
+    .btn { color: red;}                             (0,0,1,0)
+    nav#nav div.pull-right .btn {color: green;}     (0,1,2,2) (highest PRIORITY)
+    a{color: white;}                                (0,0,0,1)
+    #nav a.btn:hover {color: blue;}                 (0,1,2,1)
+
+    so color will be green.
+
+    If we have same SPECIFICITY than SOURCE ORDER will resolve the conflicts.
+
+    SOURCE ORDER : The last declarations will override the other rules and will be applied to an elements.
+
+
+    IMPORTANT NOTES:
+
+    1. CSS declarations with !important keyword has highest PRIORITY.
+    2. !important keyword must be used as last resource, it is the bad practice.
+    3. Inline Styles try to avoid using this. if neccessay use.
+    4. A selector that contain 1 ID is more specific than one with 1000 Classes.
+    5. A selector that contain 1 Classes is more specific than one with 1000 Elements.
+    6. universal selector * has no SPECIFICITY values (0,0,0,0)
+    7. Rely more on SPECIFICITY than SOURCE ORDER.
+    8. *Rely on ORDER when using 3rd Party CSS, always put your stylesheet last.
+
+16. HOW CSS UNITS ARE CONVERTED FROM RELATIVE TO ABSOLUTE UNITS:
+
+    RELATIVE UNITS -> %, em (look for parent element as refrence), rem (look for root element as refrence), vh, vw.
+
+    ABSOLUTE UNITS -> px.
+
+        EXAMPLE                      CONVERT TO px                             RESULT IN px
+
+    1.      150%             ->         x% * parents font-size (16px)      ->          24px
+    2.      10%              ->         x% * parents width (1000px)        ->          100px
+    3.      3em              ->         x * parents font-size (24px)       ->          72px (3 * 24)
+    4.      10rem            ->         x * root font-size                 ->          160px
+    5.      90vh             ->         x * 1% of current viewport height  ->          90% of the current viewport
+    6.      80vw             ->         x * 1% of current viewport width   ->          80% of the current viewport
+
+    IMPORTANT NOTE:
+
+        a. Each property has initial value
+        b. properties related to text are inherited i.e. font-size, font-weight, color, etc.
+
+17. BEM -> BLOCK ELEMENT MODIFIER 
+
+18. max-width, max-height -> if we give 1140px then if we have the viewport of 1140px than it will
+    take 1140px else it will adapt the given space it will take as 100% width or height.
+
+19. clearfix can only be applied to float element only.
+    whenever we take the elements out of the flow we loose the height property because it collapse.
+    
+20. For Beautiful Images: https://unsplash.com/ -> unsplash
+    For Beautiful Cover Videos : https://coverr.co/ -> coverr
+
+21. box-decoration-break -> style gives 'clone' value eg. if you have 1 box and 2 content then padding will be applied 
+    to both box; refer section-tour -> card -> card__headding-span--1, 2, 3 for putting padding.
+
+22. shape-outside to work we must specify float and also when we mention dimensions such as 
+    height and width. 
+    refer sass/components/story.scss -> &__shape
+
+23. transform property is not going to work in parent if child already has that.
+
+24. Opacity 0 -> 1 lower the value more transparent it is.
+
+
+
+
+
+
+
+
+
+
+
+
+    

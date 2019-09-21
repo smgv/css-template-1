@@ -152,6 +152,10 @@
     
 20. For Beautiful Images: https://unsplash.com/ -> unsplash
     For Beautiful Cover Videos : https://coverr.co/ -> coverr
+    FOr transition timeing function:
+        a. https://easings.net/en -> easings.net
+        b. https://cubic-bezier.com/#.17,.67,.83,.67 -> cubic-biezere
+        
 
 21. box-decoration-break -> style gives 'clone' value eg. if you have 1 box and 2 content then padding will be applied 
     to both box; refer section-tour -> card -> card__headding-span--1, 2, 3 for putting padding.

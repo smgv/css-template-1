@@ -7,6 +7,10 @@
 }
 
 // GRID
+/* 
+$col-num is the number that decides the number of column in the row
+$gutter-horizantal is the space between two columns.
+*/
 @mixin grid-col-width($col-num) {
   @if $col-num == 1 {
     width: calc((100% - #{$gutter-horizantal}) / #{$col-num});
@@ -17,4 +21,56 @@
 
 @mixin grid-col-width-span($col-num) {
   width: calc(2 * ((100% - (#{$col-num} - 1) * #{$gutter-horizantal}) / #{$col-num}) + #{$gutter-horizantal});
+}
+
+// MEDIA QUERY MANAGER
+
+/* 
+0 - 600px : Phone
+600px - 900px : Tablet Portrait
+900px - 1200px : Tablet Landscape
+[1200px - 1800px] : is where our normal styles are applied.
+1800px + : Big Desktop.
+
+$breakpoints argument choices :
+- phone
+- tab-port
+- tab-land
+- big-desk
+
+- ORDER to follow for responsive changes:
+  -> base > typography > general layout - grid > page layout > components 
+
+- rem dosent work in media queries so em is more useful in this scenario!
+- 1em is 16px.
+*/
+
+@mixin responsive($breakpoints) {
+  @if $breakpoints == phone {
+    @media (max-width: 37.5em) {
+      // 37.5em * 16px -> 600px
+      @content;
+    }
+  }
+
+  @if $breakpoints == tab-port {
+    // 56.25em * 16px -> 900px
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoints == tab-land {
+    // 75em * 16px -> 1200px
+    @media (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoints == big-desk {
+    // 112.5em * 16px -> 1800px
+    @media (min-width: 112.5em) {
+      @content;
+    }
+  }
 }

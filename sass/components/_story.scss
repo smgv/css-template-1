@@ -1,13 +1,23 @@
 .story {
   width: 75%;
   margin: 0 auto;
-  background-color: rgba($color-white, .2);
+  background-color: rgba($color-white, 0.2);
   box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
   border-radius: 0.3rem;
   padding: 6rem;
   padding-left: 9rem;
 
   transform: skewX(-12deg);
+
+  @include responsive(tab-port) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include responsive(phone) {
+    transform: skewX(0);
+  }
 
   &__img {
     height: 100%;
@@ -29,10 +39,18 @@
     clip-path: circle(50% at 50% 50%);
 
     transform: translateX(-3rem) skewX(12deg);
+
+    @include responsive(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
   }
 
   &__text {
     transform: skewX(12deg);
+
+    @include responsive(phone) {
+      transform: skewX(0);
+    }
   }
 
   &__caption {
@@ -56,6 +74,6 @@
 
   &:hover &__img {
     transform: translateX(-4rem) scale(1);
-    filter: blur(3px) brightness(80%)
+    filter: blur(3px) brightness(80%);
   }
 }

@@ -3,7 +3,7 @@
     margin-bottom: 2rem;
   }
 
-  &__radio-input{
+  &__radio-input {
     display: none;
   }
 
@@ -54,6 +54,13 @@
   &__radio-group {
     width: 45%;
     display: inline-block;
+
+    @include responsive(phone) {
+      width: 100%;
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
   }
 
   &__radio-label {

@@ -47,7 +47,7 @@ $breakpoints argument choices :
 
 @mixin responsive($breakpoints) {
   @if $breakpoints == phone {
-    @media (max-width: 37.5em) {
+    @media only screen and (max-width: 37.5em) {
       // 37.5em * 16px -> 600px
       @content;
     }
@@ -55,21 +55,21 @@ $breakpoints argument choices :
 
   @if $breakpoints == tab-port {
     // 56.25em * 16px -> 900px
-    @media (max-width: 56.25em) {
+    @media only screen and (max-width: 56.25em) {
       @content;
     }
   }
 
   @if $breakpoints == tab-land {
     // 75em * 16px -> 1200px
-    @media (max-width: 75em) {
+    @media only screen and (max-width: 75em) {
       @content;
     }
   }
 
   @if $breakpoints == big-desk {
     // 112.5em * 16px -> 1800px
-    @media (min-width: 112.5em) {
+    @media only screen and (min-width: 112.5em) {
       @content;
     }
   }

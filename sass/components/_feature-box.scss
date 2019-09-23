@@ -20,14 +20,17 @@
   &__icon {
     font-size: 6rem;
     margin-bottom: 0.5rem;
+    color: $color-primary;
 
     @include responsive(tab-port) {
       margin-bottom: 0;
     }
 
-    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
+    @supports (-webkit-background-clip: text) or (background-clip: text) {
+      background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
   }
 }

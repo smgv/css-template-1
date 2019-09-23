@@ -1,16 +1,22 @@
-.bg-video{
-    position: absolute;
-    top: 0;
-    left: 0;
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  overflow: hidden;
+
+  &__content {
     height: 100%;
     width: 100%;
-    z-index: -1;
-    opacity: .15;
-    overflow: hidden;
+    display: none;
 
-    &__content{
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+    @supports (object-fit: cover) or (-webkit-object-fit: cover) {
+      object-fit: cover;
+      background-color: none;
+      display: block;
     }
+  }
 }

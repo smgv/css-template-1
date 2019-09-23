@@ -40,12 +40,16 @@
   font-weight: 700;
   text-transform: uppercase;
   display: inline-block;
-  background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
+  color: $color-primary;
   letter-spacing: 0.2rem;
   transition: all 0.2s;
+
+  @supports (-webkit-background-clip: text) or (background-clip: text) {
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
 
   @include responsive(tab-port) {
     font-size: 3rem;
